@@ -14,9 +14,9 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Import Routes
-const postsRoute = require("./routes/posts");
+const Routes = require("./src/Model/routes");
 
-// app.use("/posts", postsRoute);
+app.use(Routes);
 
 // Middleware
 app.use("/posts", () => {
