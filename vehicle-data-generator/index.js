@@ -44,7 +44,7 @@ const readOutLoud = (vehicleName) => {
 	let i = 0
 
 	return (fileStream
-		// Filestream piped to csvParse which accept nodejs readablestreams and parses each line to a JSON object
+		// Filestream vc piped to csvParse which accept nodejs readablestreams and parses each line to a JSON object
 		.pipe(csvParse({ delimiter: ",", columns: true, cast: true }))
 		// Then it is piped to a writable streams that will push it into nats
 		.pipe(new Writable({
