@@ -3,14 +3,14 @@ const router = express.Router();
 const Bus = require("./Bus");
 
 // Gets all the posts
-router.get("/", async (req, res) => {
-  try {
-    const data = await Bus.find();
-    res.json(data);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
+// router.get("/", async (req, res) => {
+//   try {
+//     const data = await Bus.find();
+//     res.json(data);
+//   } catch (err) {
+//     res.json({ message: err });
+//   }
+// });
 
 // Get specific post
 router.get("/:postId", async (req, res) => {
@@ -24,7 +24,7 @@ router.get("/:postId", async (req, res) => {
 });
 
 router.get("/specific", (req, res) => {
-  res.send("We are on a specific post");
+  res.send({ message:"We are on a specific post"});
 });
 
 // Submit posts
@@ -69,4 +69,4 @@ router.put("/:postId", async (req, res) => {
 
 module.exports = router;
 
-// exec is used to return a promise
+

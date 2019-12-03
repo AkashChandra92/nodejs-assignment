@@ -1,0 +1,8 @@
+mongoose.connect("mongodb://localhost:27017", { useNewUrlParser: true }, () => console.log("bla"));
+
+const schema = new mongoose.Schema({ name: String, age: Number }, { collection: "kelley" }); // <-- collection name = table
+const Entity = mongoose.model('Hjk', schema); <-- only for in the code
+
+Entity.create({ name: 'B', age: 32 }).then(console.log)
+Entity.find().then(console.log)
+

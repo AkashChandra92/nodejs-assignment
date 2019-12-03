@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const PostSchema = mongoose.Schema({
+const BusSchema = new mongoose.Schema({
     time : {
         type : Date,
         required : true
@@ -10,7 +10,7 @@ const PostSchema = mongoose.Schema({
         required : true
     },
     gps : {
-        type : Date,
+        type : Number,
         default : Date.now
     },
     odo :{
@@ -24,4 +24,5 @@ const PostSchema = mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('Bus', PostSchema)
+// module.exports = mongoose.model('Bus', PostSchema)
+module.exports = BusSchema
