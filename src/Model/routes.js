@@ -2,21 +2,21 @@ const express = require("express");
 const router = express.Router();
 const Bus = require("./Bus");
 
-// Gets all the posts
-// router.get("/", async (req, res) => {
-//   try {
-//     const data = await Bus.find();
-//     res.json(data);
-//   } catch (err) {
-//     res.json({ message: err });
-//   }
-// });
+// Gets all data of bus
+router.get("/bus", async (req, res) => {
+  try {
+    const data = await Bus.find();
+    res.json(data);
+  } catch (err) {
+    res.json({ message: err });
+  }
+});
 
 // Get specific post
-router.get("/:postId", async (req, res) => {
-  console.log(req.params.postId);
+router.get("bus/:busId", async (req, res) => {
+  console.log(req.params.busId);
   try {
-    const post = await Post.findById(req.params.postId);
+    const post = await Post.findById(req.params.busId);
     res.json(post);
   } catch (err) {
     res.json({ message: err });
@@ -25,43 +25,49 @@ router.get("/:postId", async (req, res) => {
 
 router.get("/specific", (req, res) => {
   res.send({ message:"We are on a specific post"});
+  console.log("We are on a specific post")
 });
 
 // Submit posts
-router.post("/", async (req, res) => {
+router.post("/bus", async (req, res) => {
   console.log(req.body);
-  const post = new Post({
-    title: req.body.title,
-    description: req.body.description
+  const bus = new Bus({
+    time: req.body.time,
+    energy : req.body.enerygy,
+    gps : req.body.gps,
+    odo: req.body.odo,
+    speed : req.body.speed,
+    soc : req.body.soc
+
   });
 
   try {
-    const savedPost = await post.save();
-    res.json(savedPost);
+    const savedBus = await bus.save();
+    res.json(savedBus);
   } catch (err) {
     res.json({ message: err });
   }
 });
 
 // Delete post
-router.delete("/:postId", async (req, res) => {
+router.delete("/:busId", async (req, res) => {
   try {
-    const removedPost = await Post.remove({ _id: req.params.postId });
-    res.json(removedPost);
+    const removedBus = await Bus.remove({ _id: req.params.busId });
+    res.json(removedBus);
   } catch (err) {
     res.json({ message: err });
   }
 });
 
 // Update a post
-router.put("/:postId", async (req, res) => {
+router.put("/:busId", async (req, res) => {
   try {
-    const updatedPost = await Post.updateOne(
-      { _id: req.params.postId },
+    const updatedBus = await Bus.updateOne(
+      { _id: req.params.BusId },
       { $set: { title: req.params.title } }
     );
     console.log(req.body.title)
-    res.json(updatedPost);
+    res.json(updatedBu);
   } catch (err) {
     res.json({ message: err });
   }
