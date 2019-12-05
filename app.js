@@ -2,6 +2,8 @@ const express = require("express");
 const Bus = require('./src/Model/Bus')
 const connectionString =
 "mongodb://localhost:27017";
+// Import Routes
+const Routes = require("./src/Model/routes");
 
 const app = express();
 const mongoose = require("mongoose");
@@ -9,15 +11,17 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// Connect to the port
 port = 3000;
 
+// Make the app listen
 app.listen(port);
 
+// let the app use certain libraries
 app.use(bodyParser.json());
 app.use(cors());
 
-// Import Routes
-const Routes = require("./src/Model/routes");
+
 
 app.use(Routes);
 

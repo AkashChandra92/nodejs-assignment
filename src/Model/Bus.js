@@ -10,8 +10,7 @@ const BusSchema = new mongoose.Schema({
         required : true
     },
     gps : {
-        type : Number,
-        default : Date.now
+        type : String,
     },
     odo :{
         type: Number,

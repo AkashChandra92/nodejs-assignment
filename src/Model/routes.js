@@ -1,6 +1,8 @@
 const express = require("express");
+const mongoose = require('mongoose')
 const router = express.Router();
 const Bus = require("./Bus");
+const Entity = mongoose.model('testBus', Bus);
 
 // Gets all data of bus
 router.get("/bus", async (req, res) => {
@@ -30,23 +32,26 @@ router.get("/specific", (req, res) => {
 
 // Submit posts
 router.post("/bus", async (req, res) => {
-  console.log(req.body);
-  const bus = new Bus({
+  // console.log(req.body);
+  Entity.create({
     time: req.body.time,
-    energy : req.body.enerygy,
+    energy : req.body.energy,
     gps : req.body.gps,
     odo: req.body.odo,
     speed : req.body.speed,
     soc : req.body.soc
 
+  }).then(bus => {
+    console.log("Data added")
+    res.send(bus);
   });
 
-  try {
-    const savedBus = await bus.save();
-    res.json(savedBus);
-  } catch (err) {
-    res.json({ message: err });
-  }
+  // try {
+  //   const savedBus = await bus.save();
+  //   res.json(savedBus);
+  // } catch (err) {
+  //   res.json({ message: err });
+  // }
 });
 
 // Delete post
@@ -67,7 +72,7 @@ router.put("/:busId", async (req, res) => {
       { $set: { title: req.params.title } }
     );
     console.log(req.body.title)
-    res.json(updatedBu);
+    res.json(updatedBus);
   } catch (err) {
     res.json({ message: err });
   }
