@@ -1,10 +1,10 @@
 const express = require("express");
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 const router = express.Router();
 const Bus = require("./Bus");
 const Entity = mongoose.model('testBus', Bus);
 
-// Gets all data of bus
+// Gets all data about the bus from the database
 router.get("/bus", async (req, res) => {
   try {
     const data = await Bus.find();
@@ -14,7 +14,7 @@ router.get("/bus", async (req, res) => {
   }
 });
 
-// Get specific post
+// Get speicific data from the database. This route is made to for future implementation.
 router.get("bus/:busId", async (req, res) => {
   console.log(req.params.busId);
   try {
@@ -25,6 +25,7 @@ router.get("bus/:busId", async (req, res) => {
   }
 });
 
+// Sample route to check if the conenction is working
 router.get("/specific", (req, res) => {
   res.send({ message:"We are on a specific post"});
   console.log("We are on a specific post")
@@ -45,16 +46,9 @@ router.post("/bus", async (req, res) => {
     console.log("Data added")
     res.send(bus);
   });
-
-  // try {
-  //   const savedBus = await bus.save();
-  //   res.json(savedBus);
-  // } catch (err) {
-  //   res.json({ message: err });
-  // }
 });
 
-// Delete post
+// Delete data from the database. This route is created for future implementation.
 router.delete("/:busId", async (req, res) => {
   try {
     const removedBus = await Bus.remove({ _id: req.params.busId });
@@ -64,7 +58,7 @@ router.delete("/:busId", async (req, res) => {
   }
 });
 
-// Update a post
+// Update data in the database. This route is created for future implementation.
 router.put("/:busId", async (req, res) => {
   try {
     const updatedBus = await Bus.updateOne(

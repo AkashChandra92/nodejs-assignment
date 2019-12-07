@@ -1,6 +1,6 @@
-// const streamToMongoDB = require('stream-to-mongo-db').streamToMongoDB;
 const Bus = require("./Model/Bus")
 const mongoose = require('mongoose');
+
 const Entity = mongoose.model('testBus', Bus);
 const connectionString =
 "mongodb://localhost:27017";
@@ -10,15 +10,17 @@ mongoose.connect(connectionString, { useNewUrlParser: true }, () =>
 
 const NATS = require("nats");
 let nc = NATS.connect({ json: true });
-
+// This is where the connection is establised.
 nc.on("connect", c => {
   console.log("Connected to NATS!");
 });
 
 nc.subscribe("vehicle.test-bus-1", msg => {
+  // processMessages is called to send the data to the database
   processMessages(msg)
 });
 
+// function which sends all of the data to the database.
 function processMessages(msg) {
   if (msg) {
     Entity.create({
@@ -30,23 +32,3 @@ function processMessages(msg) {
 
   }
 }
-
-// // where the data will come from
-// const connection = mongoose.connect(nc)
-// const Mymodel = mongoose.model('Bus', BusSchema)
-
-// // where the data will end up
-// const outputDBConfig = { dbURL : 'mongodb://localhost:27017' }
-
-// // create the writable stream
-// const writableStream = streamToMongoDB(outputDBConfig)
-
-// // create readable stream and consume it  
-// const stream = MyModel.find().lean().stream();
- 
-// stream.pipe(writableStream);
- 
-// stream.on('end', () => {
-//     console.log('done!');
-//     connection.close();
-// });

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// Ths bus model made according to the incoming data from Nats. 
 const BusSchema = new mongoose.Schema({
     time : {
         type : Date,
