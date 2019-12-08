@@ -16,7 +16,10 @@ function processMessages(msg) {
   }
 }
 
+
 // function which sends all the data to the incident database
+
+
 
 module.exports = processMessages;
 
