@@ -1,3 +1,5 @@
+// Running this file will start broadcasting, connect to the express server and websocket on the same port and get data to broadcast from Nats
+
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
@@ -21,23 +23,21 @@ const wss = new WebSocket.Server({ server: httpServer });
 const Routes = require("./src/Model/routes");
 
 // Create new Broadcaster
-// const broadcaster = new Broadcaster();
+const broadcaster = new Broadcaster();
 
-// broadcaster.start();
-// broadcaster.on("data", data => {
-//   // Send data to all connected clients on websocket
-//   wss.clients.forEach(socket => {
-//     socket.send(JSON.stringify(data));
-//   });
-// });
+broadcaster.start();
+broadcaster.on("msg", msg => {
+  // Send data to all connected clients on websocket
+  wss.clients.forEach(socket => {
+    socket.send(JSON.stringify(msg));
+    console.log("Broadcasting a message:", msg);
+  });
+});
 
 // Start listening on port 3000 for both express app and WS server
 httpServer.listen(port, () => {
   console.log(`HTTP server listening on port ${port}`);
 });
-
-// Make the app listen
-// app.listen(port);
 
 // let the app use certain libraries
 app.use(bodyParser.json());
