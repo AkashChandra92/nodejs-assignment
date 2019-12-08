@@ -1,18 +1,7 @@
 const express = require("express");
-// const Bus = require('./src/Model/Bus')
-// const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-// Connection string to connect to local host
-// const connectionString =
-// "mongodb://localhost:27017";
-
-// Connect to Db
-// mongoose.connect(connectionString, { useNewUrlParser: true }, () =>
-//   console.log("Connected to DB yoooo!")
-// );
 
 // Import Routes to use in the app
 const Routes = require("./src/Model/routes");
