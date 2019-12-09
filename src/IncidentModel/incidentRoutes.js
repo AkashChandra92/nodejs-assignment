@@ -1,11 +1,11 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const router = express.Router();
-const Bus = require("./Bus");
-const Entity = mongoose.model('testBus', Bus);
+const incidentBus = require("./incidentBus");
+const Entity = mongoose.model('incidentBus', incidentBus);
 
 // Gets all data about the bus from the database
-router.get("/bus", async (req, res) => {
+router.get("/incidentbus", async (req, res) => {
   try {
     const data = await Bus.find();
     res.json(data);
@@ -15,7 +15,7 @@ router.get("/bus", async (req, res) => {
 });
 
 // Get speicific data from the database. This route is made to for future implementation.
-router.get("bus/:busId", async (req, res) => {
+router.get("incidentbus/:busId", async (req, res) => {
   console.log(req.params.busId);
   try {
     const post = await Post.findById(req.params.busId);
@@ -32,7 +32,7 @@ router.get("/specific", (req, res) => {
 });
 
 // Submit posts
-router.post("/bus", async (req, res) => {
+router.post("/incidentbus", async (req, res) => {
   // console.log(req.body);
   Entity.create({
     time: req.body.time,
@@ -43,13 +43,13 @@ router.post("/bus", async (req, res) => {
     soc : req.body.soc
 
   }).then(bus => {
-    console.log("Data added")
+    console.log("Data added in the incident database")
     res.send(bus);
   });
 });
 
 // Delete data from the database. This route is created for future implementation.
-router.delete("/:busId", async (req, res) => {
+router.delete("/:incidentbusId", async (req, res) => {
   try {
     const removedBus = await Bus.remove({ _id: req.params.busId });
     res.json(removedBus);
@@ -59,7 +59,7 @@ router.delete("/:busId", async (req, res) => {
 });
 
 // Update data in the database. This route is created for future implementation.
-router.put("/:busId", async (req, res) => {
+router.put("/:incidentbusId", async (req, res) => {
   try {
     const updatedBus = await Bus.updateOne(
       { _id: req.params.BusId },
