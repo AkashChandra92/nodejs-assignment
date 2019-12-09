@@ -1,4 +1,4 @@
-const Bus = require("./Model/Bus");
+const Bus = require("./BusModel/Bus");
 const mongoose = require("mongoose");
 const Entity = mongoose.model("testBus", Bus);
 

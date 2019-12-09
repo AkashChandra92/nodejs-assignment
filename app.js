@@ -20,7 +20,7 @@ const httpServer = http.createServer(app);
 const wss = new WebSocket.Server({ server: httpServer });
 
 // Import Routes to use in the app
-const Routes = require("./src/Model/routes");
+const Routes = require("./src/BusModel/busRoutes");
 
 // Create new Broadcaster
 const broadcaster = new Broadcaster();
@@ -28,6 +28,7 @@ const broadcaster = new Broadcaster();
 broadcaster.start();
 broadcaster.on("msg", msg => {
   // Send data to all connected clients on websocket
+//   Use socket to listen to messages
   wss.clients.forEach(socket => {
     socket.send(JSON.stringify(msg));
     console.log("Broadcasting a message:", msg);
@@ -48,14 +49,7 @@ app.use(Routes);
 // Routes
 app.get("/", (req, res) => {
   console.log("hello");
-  res.json(`Running on ${port}`);
+  res.json(`Express and websocket serber running together on ${port}`);
 });
 
-// console.log("Express server is running")
 
-// const Entity = mongoose.model('Hjk', Bus);
-// hjk is the name of the document
-
-// Entity.create({ time : 11/02/2019, energy : 42, gps: 35, odo: 23, speed: 27, soc : 45}).then(console.log)
-
-// module.exports = connectionString;
