@@ -12,7 +12,7 @@ class incidentBroadcaster extends EventEmitter {
     const incidentBroadcast = () => {
       console.log("Broadcasting incidents...");
       nc.subscribe("vehicle.test-bus-1", msg => {
-        if (msg.speed > 30) {
+        if (msg.speed > 40 || msg.soc<20) {
           // Incoming incident data is emitted as broadcast
           this.emit("incident data", msg);
           console.log("Incident data" ,msg);

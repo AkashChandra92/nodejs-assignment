@@ -7,7 +7,6 @@ const cors = require("cors");
 const WebSocket = require("ws");
 const http = require("http");
 
-
 // Connect to the port
 port = 3000;
 
@@ -40,17 +39,17 @@ broadcaster.on("msg", msg => {
 });
 
 // Create new broadcaster for all incident data 
-// const incidentBroadcaster = new IncidentBroadcaster();
+const incidentBroadcaster = new IncidentBroadcaster();
 
-// incidentBroadcaster.start();
-// incidentBroadcaster.on("msg", msg => {
+incidentBroadcaster.start();
+incidentBroadcaster.on("msg", msg => {
   // Send incident data to all connected clients on websocket
   // Use socket to listen to incident messages
-//   wss.clients.forEach(socket => {
-//     socket.send(JSON.stringify(msg));
-//     console.log("Broadcasting a message:", msg);
-//   });
-// });
+  wss.clients.forEach(socket => {
+    socket.send(JSON.stringify(msg));
+    console.log("Broadcasting a message:", msg);
+  });
+});
 
 
 // Start listening on port 3000 for both express app and WS server
