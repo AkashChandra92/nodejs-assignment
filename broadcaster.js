@@ -13,7 +13,7 @@ class Broadcaster extends EventEmitter {
 			console.log("Broadcasting...")
 			nc.subscribe("vehicle.test-bus-1", msg => {
                 // Incoming data is emitted as broadcast
-                this.emit("data", msg)
+				this.emit("data", msg)
                 console.log(msg);
             });
 		}

@@ -15,9 +15,9 @@ Mongoose.createdbConnection();
 // Data starts flowing from nats (pub-sub model) and is send to the database for persistence
 nc.subscribe("vehicle.test-bus-1", msg => {
   // processMessages is the function which sends the data to the database
-  // Process.processMessages(msg);
+  Process.processMessages(msg);
   Process.processIncidentMessages(msg);
-  
+  // console.log(msg);
 });
 
 // Connection to the mongod instance made here which handles incident data
