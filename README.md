@@ -124,13 +124,13 @@ Good luck with the assignment!
 
      `npm run start`
      
-      This will make a connection to Nats as well as the connection to Mongodb database.
+     This will make a connection to Nats as well as the connection to Mongodb database.
       
 * Finally open a terminal and run 
 
-      `npm run start-broadcast`
+     `npm run start-broadcast`
       
-      Nats will start sending messages after subscribing.
+     Nats will start sending messages after subscribing.
 
 Once Nats starts sending messages, the broadcaster will emit all data as well as incident data. The incoming messages will be sent to the database in the collection testbuses for persistence and the incident will be sent to another collection called incidentBuses. 
 
