@@ -11,13 +11,4 @@ function createdbConnection() {
   );
 }
 
-// function to connect to incident database
-async function createIncidentConnection() {
-  await  mongoose.createConnection('mongodb://localhost:27018')
-  console.log("Connected to incident database")
-  const IncidentModel = conn.Model('Incidents', incidentBus)
-}
-
 exports.createdbConnection = createdbConnection;
-exports.createIncidentConnection = createIncidentConnection;
-// module.exports = {createdbConnection, createIncidentConnection}

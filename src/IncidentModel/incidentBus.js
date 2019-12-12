@@ -24,5 +24,4 @@ const incidentBusSchema = new mongoose.Schema({
     }
 })
 
-// module.exports = mongoose.model('Bus', PostSchema)
 module.exports = incidentBusSchema

@@ -2,19 +2,19 @@ const express = require("express");
 const mongoose = require('mongoose');
 const router = express.Router();
 const incidentBus = require("./incidentBus");
-const Entity = mongoose.model('incidentBus', incidentBus);
+const incidentEntity = mongoose.model("incidentBus", incidentBus);
 
 // Gets all data about the bus from the database
 router.get("/incidentbus", async (req, res) => {
   try {
-    const data = await Bus.find();
+    const data = await incidentBus.find();
     res.json(data);
   } catch (err) {
     res.json({ message: err });
   }
 });
 
-// Get speicific data from the database. This route is made to for future implementation.
+// Get specific data from the database. This route is made to for future implementation.
 router.get("incidentbus/:busId", async (req, res) => {
   console.log(req.params.busId);
   try {
@@ -25,16 +25,10 @@ router.get("incidentbus/:busId", async (req, res) => {
   }
 });
 
-// Sample route to check if the conenction is working
-router.get("/specific", (req, res) => {
-  res.send({ message:"We are on a specific post"});
-  console.log("We are on a specific post")
-});
-
 // Submit posts
 router.post("/incidentbus", async (req, res) => {
   // console.log(req.body);
-  Entity.create({
+  incidentEntity.create({
     time: req.body.time,
     energy : req.body.energy,
     gps : req.body.gps,
@@ -46,30 +40,6 @@ router.post("/incidentbus", async (req, res) => {
     console.log("Data added in the incident database")
     res.send(bus);
   });
-});
-
-// Delete data from the database. This route is created for future implementation.
-router.delete("/:incidentbusId", async (req, res) => {
-  try {
-    const removedBus = await Bus.remove({ _id: req.params.busId });
-    res.json(removedBus);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
-
-// Update data in the database. This route is created for future implementation.
-router.put("/:incidentbusId", async (req, res) => {
-  try {
-    const updatedBus = await Bus.updateOne(
-      { _id: req.params.BusId },
-      { $set: { title: req.params.title } }
-    );
-    console.log(req.body.title)
-    res.json(updatedBus);
-  } catch (err) {
-    res.json({ message: err });
-  }
 });
 
 module.exports = router;

@@ -19,10 +19,9 @@ function processMessages(msg) {
   }
 }
 
-// function which sends all the data to the incident database.
+// function which sends incident data to the database.
 function processIncidentMessages(msg) {
-  if (msg.speed >= 20 ) {
-    console.log('msg speed', msg.speed)
+  if (msg.speed >= 30 || msg.soc<30 ) {
     incidentEntity
       .create({
         ...msg
@@ -31,16 +30,8 @@ function processIncidentMessages(msg) {
         console.log({ addedIncident: bus });
       })
       .catch(err => console.log({ error: err }));
-  } else {
-    // console.log("Something went wrong");
-  }
+  } 
 }
-
-
-// Then start building Mongod2
-// Make the connection in the same file and see if all data goes to the incident database
-// Once successfull, apply the function to sort the incident data
-// Finally write tests for everything required
 
 exports.processMessages = processMessages
 exports.processIncidentMessages = processIncidentMessages

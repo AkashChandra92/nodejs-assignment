@@ -66,7 +66,7 @@ app.use(Routes);
 // Routes
 app.get("/", (req, res) => {
   console.log("hello");
-  res.json(`Express and websocket serber running together on ${port}`);
+  res.json(`Express and websocket server running together on ${port}`);
 });
 
 

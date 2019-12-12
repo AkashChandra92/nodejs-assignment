@@ -25,12 +25,6 @@ router.get("bus/:busId", async (req, res) => {
   }
 });
 
-// Sample route to check if the conenction is working
-router.get("/specific", (req, res) => {
-  res.send({ message:"We are on a specific post"});
-  console.log("We are on a specific post")
-});
-
 // Submit posts
 router.post("/bus", async (req, res) => {
   // console.log(req.body);
@@ -46,30 +40,6 @@ router.post("/bus", async (req, res) => {
     console.log("Data added")
     res.send(bus);
   });
-});
-
-// Delete data from the database. This route is created for future implementation.
-router.delete("/:busId", async (req, res) => {
-  try {
-    const removedBus = await Bus.remove({ _id: req.params.busId });
-    res.json(removedBus);
-  } catch (err) {
-    res.json({ message: err });
-  }
-});
-
-// Update data in the database. This route is created for future implementation.
-router.put("/:busId", async (req, res) => {
-  try {
-    const updatedBus = await Bus.updateOne(
-      { _id: req.params.BusId },
-      { $set: { title: req.params.title } }
-    );
-    console.log(req.body.title)
-    res.json(updatedBus);
-  } catch (err) {
-    res.json({ message: err });
-  }
 });
 
 module.exports = router;
