@@ -98,29 +98,38 @@ Good luck with the assignment!
 
    `sudo service mongod start` 
 
-(for more information please check https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ )
+   (For more information please check https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ )
 
 * Clone the repository.
 
 * Install all the dependencies with the following command:
+
  `npm i`
  
 * cd nodejs-assignment.
 
 * Open a terminal and run
+
    `npm run start-nats` 
+   
     This will establish a connection with Nats pub-sub model.
     
 * Open a terminal and run 
+
     `npm run broadcast` 
+    
      This will run the express server, braocaster and incident broadcaster on the same port).
      
 * Open another terminal and cd node-jsassignment/src and run 
+
      `npm run start`
+     
       This will make a connection to Nats as well as the connection to Mongodb database.
       
 * Finally open a terminal and run 
-      `npm run start-broadcast` 
+
+      `npm run start-broadcast`
+      
       Nats will start sending messages after subscribing.
 
 Once Nats starts sending messages, the broadcaster will emit all data as well as incident data. The incoming messages will be sent to the database in the collection testbuses for persistence and the incident will be sent to another collection called incidentBuses. 
