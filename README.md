@@ -17,7 +17,7 @@ Then open up your terminal and clone the forked repository
 
 Enter the directory
 
-`cd nodejs-assignment`
+ `cd nodejs-assignment`
 
 Install all the dependencies
 
@@ -30,7 +30,6 @@ Run [NATS](https://nats.io/) on a docker container (make sure that you've [insta
 Run the project
 
 `npm run start-broadcast`
-
 
 ## The Assignment
 We have provided you with a starter kit that broadcast vehicle data to NATS. This is all setup for you. The architecture that you need to build is below:
@@ -93,3 +92,45 @@ Looking to level up your knowledge and skills? These are some good articles/cour
 If you have any questions about the assignment or project setup feel free to contact us at <a href='mailto:s.surur@viriciti.com'>s.surur@viriciti.com</a>. You can also come by the office. We're always ready to help.
 
 Good luck with the assignment!
+
+## How to run the finished assignment(branch Akash)
+* Download the official image for Mongodb and run 
+
+   `sudo service mongod start` 
+
+   (For more information please check https://docs.mongodb.com/manual/tutorial/install-mongodb-on-ubuntu/ )
+
+* Clone the repository.
+
+* Install all the dependencies with the following command:
+
+   `npm i`
+ 
+* cd nodejs-assignment.
+
+* Open a terminal and run
+
+   `npm run start-nats` 
+   
+    This will establish a connection with Nats pub-sub model.
+    
+* Open a terminal and run 
+
+    `npm run broadcast` 
+    
+     This will run the express server, braocaster and incident broadcaster on the same port).
+     
+* Open another terminal and cd node-jsassignment/src and run 
+
+     `npm run start`
+     
+     This will make a connection to Nats as well as the connection to Mongodb database.
+      
+* Finally open a terminal and run 
+
+     `npm run start-broadcast`
+      
+     Nats will start sending messages after subscribing.
+
+Once Nats starts sending messages, the broadcaster will emit all data as well as incident data. The incoming messages will be sent to the database in the collection testbuses for persistence and the incident will be sent to another collection called incidentBuses. 
+
