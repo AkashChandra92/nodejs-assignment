@@ -17,7 +17,7 @@ Then open up your terminal and clone the forked repository
 
 Enter the directory
 
-`cd nodejs-assignment`
+ `cd nodejs-assignment`
 
 Install all the dependencies
 
@@ -104,7 +104,7 @@ Good luck with the assignment!
 
 * Install all the dependencies with the following command:
 
- `npm i`
+   `npm i`
  
 * cd nodejs-assignment.
 
